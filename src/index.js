@@ -53,19 +53,6 @@ client.on(
     console.log(message.author.createdAt),
     console.log(`User: ${message.author.username}#${message.author.discriminator}`),
     console.log(`Message: ${message.content}`),
-    console.log(`Attatchments:`),
-    console.log(console.log(
-      `      ${message.attachments.at(0)?.url},
-      ${message.attachments.at(1)?.url},
-      ${message.attachments.at(2)?.url},
-      ${message.attachments.at(3)?.url},
-      ${message.attachments.at(4)?.url},
-      ${message.attachments.at(5)?.url},
-      ${message.attachments.at(6)?.url},
-      ${message.attachments.at(7)?.url},
-      ${message.attachments.at(8)?.url},
-      ${message.attachments.at(9)?.url}`
-      )),
     console.log("------------------------------------------"),
     console.log()
   )
