@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('server')
-		.setDescription('shows server info'),
+		.setName('1v1')
+		.setDescription('queues 1v1 matchmaking'),
 	async execute(interaction) {
 	},
 };

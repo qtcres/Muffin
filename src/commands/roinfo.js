@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('server')
-		.setDescription('shows server info'),
+		.setName('roinfo')
+		.setDescription('roblox user info'),
 	async execute(interaction) {
 	},
 };

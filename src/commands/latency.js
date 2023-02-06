@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, GatewayIntentBits } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -6,7 +6,7 @@ module.exports = {
 		.setDescription('Replies with latency'),
 	async execute(interaction) {
 		interaction.reply({
-            content: `${Date.now() - interaction.createdTimestamp}ms`,
+            content: `${interaction.createdTimestamp - Date.now()}ms`,
             ephemeral: true
         });
 	},

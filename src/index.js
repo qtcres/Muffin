@@ -9,7 +9,9 @@ const {
   SlashCommandBuilder,
   VoiceChannel,
   Events,
-  updateVoiceState
+  updateVoiceState,
+  Attachment,
+  IntentsBitField
 } = require("discord.js");
 
 const { joinVoiceChannel } = require("@discordjs/voice");
@@ -40,18 +42,32 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 client.on("ready", () => {
-  console.log(`${client.user.username} is Online!`);
+  console.log(`${client.user.username} is Online!`); 
 });
 
 client.on(
   "messageCreate",
   (message) => (
+    console.log(),
     console.log("------------------------------------------"),
     console.log(message.author.createdAt),
-    console.log(message.author.username, message.author.discriminator),
-    console.log(message.content),
-    console.log(message.attachments),
-    console.log("------------------------------------------")
+    console.log(`User: ${message.author.username}#${message.author.discriminator}`),
+    console.log(`Message: ${message.content}`),
+    console.log(`Attatchments:`),
+    console.log(console.log(
+      `      ${message.attachments.at(0)?.url},
+      ${message.attachments.at(1)?.url},
+      ${message.attachments.at(2)?.url},
+      ${message.attachments.at(3)?.url},
+      ${message.attachments.at(4)?.url},
+      ${message.attachments.at(5)?.url},
+      ${message.attachments.at(6)?.url},
+      ${message.attachments.at(7)?.url},
+      ${message.attachments.at(8)?.url},
+      ${message.attachments.at(9)?.url}`
+      )),
+    console.log("------------------------------------------"),
+    console.log()
   )
 );
 

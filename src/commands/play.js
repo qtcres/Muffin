@@ -2,13 +2,13 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('level')
-		.setDescription('Shows your level')
+		.setName('play')
+		.setDescription('plays song')
 		.addStringOption(option =>
 			option
-			  .setName("user")
-			  .setDescription("users level")
-			  .setRequired(false)
+			  .setName("song")
+			  .setDescription("song name")
+			  .setRequired(true)
 		  ),
 	async execute(interaction) {
 	},
