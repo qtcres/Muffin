@@ -11,7 +11,8 @@ const {
   Events,
   updateVoiceState,
   Attachment,
-  IntentsBitField
+  IntentsBitField,
+  ActivityType
 } = require("discord.js");
 
 const { joinVoiceChannel } = require("@discordjs/voice");
@@ -25,6 +26,7 @@ const client = new Client({
     GatewayIntentBits.GuildEmojisAndStickers,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.GuildIntegrations,
   ],
 });
 
@@ -42,7 +44,18 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 client.on("ready", () => {
-  console.log(`${client.user.username} is Online!`); 
+  client.user.setPresence({
+    activities: [
+      { name: `${client.guilds.cache.size} Servers!`, type: ActivityType.Watching },
+    ],
+    status: "online",
+  });
+  console.log();
+  console.log("------------------------------------------");
+  console.log(`${client.user.username} is Online!`);
+  console.log(`Currently in ${client.guilds.cache.size} servers`);
+  console.log("------------------------------------------");
+  console.log();
 });
 
 client.on(
@@ -50,8 +63,11 @@ client.on(
   (message) => (
     console.log(),
     console.log("------------------------------------------"),
-    console.log(message.author.createdAt),
-    console.log(`User: ${message.author.username}#${message.author.discriminator}`),
+    console.log(`Date: ${message.createdAt.toLocaleDateString()}`),
+    console.log(`Time: ${message.createdAt.toLocaleTimeString()}`),
+    console.log(
+      `User: ${message.author.username}#${message.author.discriminator}`
+    ),
     console.log(`Message: ${message.content}`),
     console.log("------------------------------------------"),
     console.log()
