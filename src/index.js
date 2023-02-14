@@ -2,20 +2,16 @@ const {
   Client,
   Collection,
   GatewayIntentBits,
-  messageLink,
   Message,
   REST,
   Routes,
   SlashCommandBuilder,
   VoiceChannel,
   Events,
-  updateVoiceState,
   Attachment,
   IntentsBitField,
-  ActivityType
+  ActivityType,
 } = require("discord.js");
-
-const { joinVoiceChannel } = require("@discordjs/voice");
 
 const client = new Client({
   intents: [
@@ -46,14 +42,23 @@ const path = require("node:path");
 client.on("ready", () => {
   client.user.setPresence({
     activities: [
-      { name: `${client.guilds.cache.size} Servers!`, type: ActivityType.Watching },
+      {
+        name: `${client.guilds.cache.size} Servers!`,
+        type: ActivityType.Watching,
+      },
     ],
-    status: "online",
   });
+  client.user.setStatus("idle");
   console.log();
   console.log("------------------------------------------");
   console.log(`${client.user.username} is Online!`);
-  console.log(`Currently in ${client.guilds.cache.size} servers`);
+  console.log(`Servers: ${client.guilds.cache.size}`);
+  console.log(
+    `Users: ${
+      client.guilds.cache.reduce((a, g) => a + g.memberCount, 0) -
+      client.guilds.cache.size
+    }`
+  );
   console.log("------------------------------------------");
   console.log();
 });
@@ -63,11 +68,9 @@ client.on(
   (message) => (
     console.log(),
     console.log("------------------------------------------"),
-    console.log(`Date: ${message.createdAt.toLocaleDateString()}`),
-    console.log(`Time: ${message.createdAt.toLocaleTimeString()}`),
-    console.log(
-      `User: ${message.author.username}#${message.author.discriminator}`
-    ),
+    console.log(`Date: ${message.createdAt.toLocaleDateString()}    Time: ${message.createdAt.toLocaleTimeString()}`),
+    console.log(`Guild: ${message.guild.name}    ID: ${message.guildId}`),
+    console.log(`User: ${message.author.username}#${message.author.discriminator}    ID: ${message.author.id}`),
     console.log(`Message: ${message.content}`),
     console.log("------------------------------------------"),
     console.log()

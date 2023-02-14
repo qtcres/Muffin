@@ -5,7 +5,7 @@ module.exports = {
     .setName("muffin")
     .setDescription("Mufiin Info"),
   async execute(interaction) {
-    const exampleEmbed = new EmbedBuilder()
+    const muffinEmbed = new EmbedBuilder()
       .setColor(0x0099ff)
       .setTitle("Muffin")
       .setURL("https://github.com/Cresfy/Muffin")
@@ -34,7 +34,7 @@ module.exports = {
       );
 
     interaction.reply({
-      embeds: [exampleEmbed],
+      embeds: [muffinEmbed],
       ephemeral: true,
     });
   },
