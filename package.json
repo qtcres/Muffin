@@ -22,7 +22,6 @@
     "@discordjs/builders": "^1.4.0",
     "@discordjs/rest": "^1.5.0",
     "@discordjs/voice": "^0.14.0",
-    "discord-banner": "^1.6.7",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "erela.js": "^2.4.0",

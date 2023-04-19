@@ -2,6 +2,8 @@ const {
   SlashCommandBuilder,
   EmbedBuilder,
   GatewayIntentBits,
+  Message,
+  Guild,
 } = require("discord.js");
 
 module.exports = {
@@ -59,6 +61,10 @@ module.exports = {
         {
           name: "Bot :robot:",
           value: `${isBot}`,
+        },
+        {
+          name: "Joined :date:",
+          value: `${interaction.guild}`,
         },
         {
           name: "Created :date:",

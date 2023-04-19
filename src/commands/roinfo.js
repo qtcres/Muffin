@@ -9,13 +9,21 @@ module.exports = {
     ),
   async execute(interaction) {
     const usernameoption = interaction.options.getString("username");
-    const results = await fetch(
-      `https://api.roblox.com/users/get-by-username?username=${usernameoption}`
+    let results = await fetch(
+      `https://users.roproxy.com/v1/usernames/users`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 'usernames': [usernameoption] })
+      }
     ).then((response) => response.json());
-    const username = results.Username;
-    const userid = results.Id;
+    results = results.data[0]
+    const username = results.name;
+    const userid = results.id;
     const userinfo = await fetch(
-      `https://users.roblox.com/v1/users/${userid}`
+      `https://users.roproxy.com/v1/users/${userid}`
     ).then((response) => response.json());
     let about = {};
     if (userinfo.description) {
@@ -24,21 +32,16 @@ module.exports = {
       about = " ";
     }
     const displayname = userinfo.displayName;
-    const isonline = results.IsOnline;
     const isbanned = userinfo.isBanned;
     const created = userinfo.created;
-    console.log(about);
     const userheadshot = await fetch(
-      `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=352x352&format=Png&isCircular=false`
+      `https://thumbnails.roproxy.com/v1/users/avatar-headshot?userIds=${userid}&size=352x352&format=Png&isCircular=false`
     ).then((response) => response.json());
     const userUrl = `https://www.roblox.com/users/${userid}/profile`;
     let rap = 0;
     const roproxy = await fetch(
       `https://inventory.roproxy.com/v1/users/${userid}/assets/collectibles?sortOrder=Asc&limit=100`
     ).then((response) => response.json());
-    Object.keys(roproxy.data).forEach(function (group) {
-      console.log(roproxy.data[1]);
-    });
     const roinfoEmbed = new EmbedBuilder()
       .setColor(0x0099ff)
       .setTitle(`${username}`)
@@ -58,10 +61,6 @@ module.exports = {
           value: `${displayname}`,
         },
         {
-          name: "Online :green_circle:",
-          value: `${isonline}`,
-        },
-        {
           name: "Banned :x:",
           value: `${isbanned}`,
         },
@@ -77,7 +76,7 @@ module.exports = {
 
     interaction.reply({
       embeds: [roinfoEmbed],
-      ephemeral: true,
+      ephemeral: false,
     });
   },
 };
