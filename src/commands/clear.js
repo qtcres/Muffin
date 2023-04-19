@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -9,7 +9,9 @@ module.exports = {
         .setName("amount")
         .setDescription("Amount of messages")
         .setRequired(true)
-    ),
+    )
+    .setDefaultMemberPermissions(PermissionFlagsBits.bulkDelete)
+    ,
   async execute(interaction) {
     let amountstring = interaction.options.getString("amount");
     let amount = parseInt(amountstring);

@@ -43,8 +43,9 @@ client.on("ready", () => {
   client.user.setPresence({
     activities: [
       {
-        name: `${client.guilds.cache.size} Servers!`,
-        type: ActivityType.Watching,
+        //name: `${client.guilds.cache.size} Servers!`, // Server Count
+        name: `${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0) - client.guilds.cache.size} Users`, // User Count
+        type: ActivityType.Listening, // Playing, Streaming, Listening, Watching, Custom, Competing
       },
     ],
   });

@@ -64,7 +64,7 @@ module.exports = {
         },
         {
           name: "Joined :date:",
-          value: `${interaction.guild}`,
+          value: `${interaction.guild.joinedAt}`,
         },
         {
           name: "Created :date:",
@@ -73,7 +73,7 @@ module.exports = {
       )
     interaction.reply({
       embeds: [userinfoEmbed],
-      ephemeral: true,
+      ephemeral: false,
     });
   },
 };
