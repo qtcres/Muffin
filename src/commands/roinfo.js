@@ -53,7 +53,7 @@ module.exports = {
       .setAuthor({
         name: `RoInfo`,
         iconURL: `https://raw.githubusercontent.com/qtcres/Muffin/master/assets/0d1f9df50edf673f46132da4f60af6e2.png`,
-        url: "https://github.com/Cresfy/Muffin",
+        url: "https://github.com/qtcres/Muffin",
       })
       .setDescription(`${about}`) 
       .setThumbnail(

@@ -43,8 +43,8 @@ module.exports = {
       .setThumbnail(`${user.displayAvatarURL({ format: "jpg", size: 4096 })}`)
       .setAuthor({
         name: `UserInfo`,
-        iconURL: `https://raw.githubusercontent.com/Cresfy/Muffin/master/assets/muff.png`,
-        url: "https://github.com/Cresfy/Muffin",
+        iconURL: `https://raw.githubusercontent.com/qtcres/Muffin/master/assets/0d1f9df50edf673f46132da4f60af6e2.png`,
+        url: "https://github.com/qtcres/Muffin",
       })
       .addFields(
         {
