@@ -55,7 +55,7 @@ module.exports = {
         iconURL: `https://raw.githubusercontent.com/qtcres/Muffin/master/assets/0d1f9df50edf673f46132da4f60af6e2.png`,
         url: "https://github.com/Cresfy/Muffin",
       })
-      .setDescription(`${about}`)
+      .setDescription(`${about}`) 
       .setThumbnail(
         `${JSON.parse(JSON.stringify(userheadshot)).data[0].imageUrl}`
       )
