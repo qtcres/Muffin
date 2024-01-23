@@ -23,8 +23,12 @@ module.exports = {
     const username = results.name;
     const userid = results.id;
     const userinfo = await fetch(
-      `https://users.roproxy.com/v1/users/${userid}`
+      `https://users.roproxy.com/v1/users/${userid}`, 
     ).then((response) => response.json());
+    const friends = await fetch(
+      `https://friends.roproxy.com/v1/users/${userid}/friends/count`,
+    ).then((response) => response.json());
+    console.log(friends.count)
     let about = {};
     if (userinfo.description) {
       about = userinfo.description;
@@ -48,7 +52,7 @@ module.exports = {
       .setURL(`${userUrl}`)
       .setAuthor({
         name: `RoInfo`,
-        iconURL: `https://raw.githubusercontent.com/Cresfy/Muffin/master/assets/muff.png`,
+        iconURL: `https://raw.githubusercontent.com/qtcres/Muffin/master/assets/44732f3e0db05de6d409ded8def6c5df.jpg`,
         url: "https://github.com/Cresfy/Muffin",
       })
       .setDescription(`${about}`)
@@ -65,8 +69,8 @@ module.exports = {
           value: `${isbanned}`,
         },
         {
-          name: "Rap :chart_with_upwards_trend:",
-          value: `temp`,
+          name: "Friends :people_hugging:",
+          value: `${friends.count}`,
         },
         {
           name: "Created :date:",

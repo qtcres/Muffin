@@ -1,9 +1,6 @@
 const {
   SlashCommandBuilder,
-  EmbedBuilder,
-  GatewayIntentBits,
-  Message,
-  Guild,
+  EmbedBuilder
 } = require("discord.js");
 
 module.exports = {
@@ -73,7 +70,7 @@ module.exports = {
       )
     interaction.reply({
       embeds: [userinfoEmbed],
-      ephemeral: false,
+      ephemeral: true,
     });
   },
 };
