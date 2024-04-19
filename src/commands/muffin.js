@@ -8,7 +8,7 @@ module.exports = {
     const muffinEmbed = new EmbedBuilder()
       .setColor(0x0099ff)
       .setTitle("Muffin")
-      .setURL("https://github.com/Cresfy/Muffin")
+      .setURL("https://github.com/qtcres/Muffin")
       .setAuthor({
         name: "github.com/qtcres",
         iconURL: "https://avatars.githubusercontent.com/u/101119130?v=4",
