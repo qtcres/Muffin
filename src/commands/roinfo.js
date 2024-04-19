@@ -1,4 +1,5 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { ActionRowBuilder } = require("@discordjs/builders");
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -28,7 +29,21 @@ module.exports = {
     const friends = await fetch(
       `https://friends.roproxy.com/v1/users/${userid}/friends/count`,
     ).then((response) => response.json());
-    console.log(friends.count)
+    const followers = await fetch(
+      `https://friends.roproxy.com/v1/users/${userid}/followers/count`,
+    ).then((response) => response.json());
+    const following = await fetch(
+      `https://friends.roproxy.com/v1/users/${userid}/followings/count`,
+    ).then((response) => response.json());
+    const usernameHistory = await fetch(
+      `https://users.roblox.com/v1/users/${userid}/username-history?limit=100&sortOrder=Asc`, 
+    ).then((response) => response.json());
+    const usernameList = []
+    for (let i=0; i < usernameHistory.data.length; i++) {
+      usernameList.push(usernameHistory.data[i].name)
+    }
+    console.log(usernameList)
+    const usernameAmount = Object.keys(JSON.parse(JSON.stringify(usernameHistory.data))).length
     let about = {};
     if (userinfo.description) {
       about = userinfo.description;
@@ -46,6 +61,10 @@ module.exports = {
     const roproxy = await fetch(
       `https://inventory.roproxy.com/v1/users/${userid}/assets/collectibles?sortOrder=Asc&limit=100`
     ).then((response) => response.json());
+    const test = new ButtonBuilder()
+      .setCustomId("join")
+      .setLabel("Join Game")
+      .setStyle(ButtonStyle.Secondary)
     const roinfoEmbed = new EmbedBuilder()
       .setColor(0x0099ff)
       .setTitle(`${username}`)
@@ -65,6 +84,10 @@ module.exports = {
           value: `${displayname}`,
         },
         {
+          name: "ID :link:",
+          value: `${userid}`,
+        },
+        {
           name: "Banned :x:",
           value: `${isbanned}`,
         },
@@ -73,13 +96,29 @@ module.exports = {
           value: `${friends.count}`,
         },
         {
+          name: "Followers :page_facing_up:",
+          value: `${followers.count}`,
+        },
+        {
+          name: "Following :page_with_curl:",
+          value: `${following.count}`,
+        },
+        {
+          name: "Username History :scroll:",
+          value: `${usernameList}`
+        },
+        {
           name: "Created :date:",
           value: `${created}`,
-        }
+        },
       );
+
+      const row = new ActionRowBuilder()
+        .addComponents(test)
 
     interaction.reply({
       embeds: [roinfoEmbed],
+      components: [row],
       ephemeral: false,
     });
   },

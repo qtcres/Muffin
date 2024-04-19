@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cresfy/Muffin.git"
+    "url": "git+https://github.com/qtcres/Muffin.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Cresfy/Muffin/issues"
+    "url": "https://github.com/qtcres/Muffin/issues"
   },
-  "homepage": "https://github.com/Cresfy/Muffin#readme",
+  "homepage": "https://github.com/qtcres/Muffin#readme",
   "dependencies": {
     "@discordjs/builders": "^1.4.0",
     "@discordjs/rest": "^1.5.0",
